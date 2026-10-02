@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# monarch-now: launcher for the engine behind Pupa, the Monarch Money bar plugin (pupa.monarch).
+#
+# The engine is a Python package in its own venv, installed by ../install.sh:
+#     ~/.local/share/monarch-now/monarchnow/    the package (a copy of engine/monarchnow)
+#     ~/.local/share/monarch-now/venv/          Python + the pinned, hash-checked Monarch client
+# This file only starts it. If the venv or the package is missing, exec fails, NOTHING reaches
+# stdout, and the bar widget paints its broken-link glyph: fail-empty, never fail-plausible.
+#
+#     monarch-now            the bar tick (one JSON line)      monarch-now login    sign in
+#     monarch-now --refresh  fetch now                         monarch-now status   what it knows
+HOME_DIR="${MONARCH_NOW_HOME:-$HOME/.local/share/monarch-now}"
+exec env PYTHONPATH="$HOME_DIR" "$HOME_DIR/venv/bin/python" -B -m monarchnow.cli "$@"

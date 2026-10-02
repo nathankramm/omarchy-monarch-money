@@ -1,0 +1,90 @@
+# Pupa / monarch-now: every setting, with its default.
+#
+# Copy this file to ~/.config/monarch-now/config.toml and change what you like. The file is
+# optional: without it the defaults below apply. The engine only reads it, never writes it.
+# A value the engine cannot use is not guessed at: the default stays in force and
+# `monarch-now status` prints a `config` line saying why.
+
+# ---- The grace period -------------------------------------------------------------------------
+# In the first days of a month a single charge decides whether you are "over" or "under". On
+# days 1..pace_grace_days the butterfly on the bar stays neutral (no green, no amber); the hover
+# card still shows every figure. 0 turns the grace period off. Whole number, 0 to 31.
+pace_grace_days = 3
+
+# ---- What counts as spending ------------------------------------------------------------------
+# A transaction counts when its Monarch category belongs to an expense-type category group, it
+# is not hidden from reports, and it carries none of the tags below. Transfers, credit card
+# payments and income fall out by their type; refunds net off; pending transactions count.
+
+# The Monarch tag you put on one-off purchases (a new roof, a wedding gift) that should not
+# move your monthly pace. They are left out of this month and of the usual month, and the
+# card's note says how many were left out. Create the tag in Monarch (Settings > Tags) and tag
+# those transactions. "" means you have no such tag.
+one_off_tag = "One-off"
+
+# More tags whose transactions are left out entirely, without a note: money you get back
+# (expenses your employer reimburses, say). Default: none.
+excluded_tags = []
+# excluded_tags = ["Reimbursable", "Work travel"]
+
+# ---- Where the usual month may start ----------------------------------------------------------
+# Your "usual month" is computed, never typed in: the average of your own complete months in
+# Monarch, the newest twelve at most. If your older months are not worth comparing with (you
+# cleaned up your categories at some point, or your life changed), name the first month that
+# should count, as "YYYY-MM". No month before it is used. Default: not set.
+# usual_since = "2025-01"
+
+# ---- The card's rows: your spending groups ----------------------------------------------------
+# The card shows up to eight groups, in this order. Each group collects Monarch CATEGORIES by
+# their exact names (Monarch > Settings > Categories). Rename, reorder, merge or split them to
+# match how you think about your money. Rules:
+#   - one to eight groups; a category belongs to one group only;
+#   - the LAST group also takes every category you did not list, and `monarch-now status`
+#     names those under `unmapped`, so nothing is ever dropped;
+#   - if you define any [[groups]] here, they replace the whole default set below.
+# The defaults, written out (uncomment all of them to start editing):
+
+# [[groups]]
+# name = "Food"
+# categories = ["Groceries", "Restaurants & Bars", "Coffee Shops"]
+#
+# [[groups]]
+# name = "Home & utilities"
+# categories = ["Mortgage", "Rent", "Home Improvement", "Gas & Electric", "Water", "Garbage",
+#               "Internet & Cable", "Software & Subscriptions", "Phone", "Insurance"]
+#
+# [[groups]]
+# name = "Shopping"
+# categories = ["Shopping", "Clothing", "Electronics", "Furniture & Housewares"]
+#
+# [[groups]]
+# name = "Fun & travel"
+# categories = ["Entertainment & Recreation", "Travel & Vacation", "Fun Money"]
+#
+# [[groups]]
+# name = "Transport"
+# categories = ["Gas", "Auto Payment", "Auto Maintenance", "Parking & Tolls", "Public Transit",
+#               "Taxi & Ride Shares"]
+#
+# [[groups]]
+# name = "Kids & education"
+# categories = ["Child Care", "Child Activities", "Education", "Student Loans"]
+#
+# [[groups]]
+# name = "Health"
+# categories = ["Medical", "Dentist", "Fitness", "Personal"]
+#
+# [[groups]]
+# name = "Other"
+# categories = ["Charity", "Gifts", "Pets", "Taxes", "Financial Fees", "Financial & Legal Services",
+#               "Loan Repayment", "Cash & ATM", "Check", "Postage & Shipping", "Miscellaneous",
+#               "Uncategorized"]
+
+# ---- Not settings -----------------------------------------------------------------------------
+# The usual month's figures are never configured. Whatever `usual_since` says, they come from
+# your own complete months, and the card's note names the months that were used
+# ("usual = Jan–Sep 2025 average"). It needs one complete month before it says anything.
+#
+# To check the engine against Monarch itself: build a Spending report in Monarch for a date
+# range, excluding the same tags, and run `monarch-now check FROM TO` (dates as YYYY-MM-DD).
+# The two totals should agree to the dollar.

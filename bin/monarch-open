@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# monarch-open: open Monarch, the way the bar click and the card's "Open Monarch" button do.
+#
+#   1. The Omarchy web app, when it is installed (install-webapp.sh creates it): the launcher
+#      ~/.local/share/applications/Monarch.desktop. Its URL is READ from that file, so editing
+#      the launcher is enough. The work is done by Omarchy's own helper,
+#      omarchy-launch-or-focus-webapp <window-pattern> <url>, which focuses the web app's window
+#      when it is already open and launches it otherwise.
+#   2. Otherwise the same URL in the default browser (xdg-open).
+#
+# The window pattern is the web app window's CLASS, not the word "Monarch": the helper also
+# matches TITLES, and a terminal, an editor tab or a browser page with "Monarch" in its title
+# would be focused instead. A Chromium --app window's class is
+# <browser>-<host>__<path>-<profile>, so "<host>__" names this app only.
+#
+#   monarch-open --print    say which way it would go, and open nothing:
+#                           "webapp <pattern> <url>" or "browser <url>"
+set -euo pipefail
+URL_DEFAULT="https://app.monarch.com"
+DESKTOP="${MONARCH_DESKTOP:-$HOME/.local/share/applications/Monarch.desktop}"
+
+url=""
+if [[ -r $DESKTOP ]]; then
+  url=$(sed -n 's/^Exec=omarchy-launch-webapp[[:space:]]\{1,\}"\{0,1\}\(https\{0,1\}:\/\/[^" ]*\)"\{0,1\}.*$/\1/p' "$DESKTOP" | head -n1)
+fi
+
+if [[ -n $url ]] && command -v omarchy-launch-or-focus-webapp >/dev/null 2>&1; then
+  host=${url#*://}
+  host=${host%%/*}
+  if [[ ${1:-} == "--print" ]]; then
+    printf 'webapp %s %s\n' "${host}__" "$url"
+    exit 0
+  fi
+  exec omarchy-launch-or-focus-webapp "${host}__" "$url"
+fi
+
+# No web app (or no Omarchy helper): the default browser.
+if [[ ${1:-} == "--print" ]]; then
+  printf 'browser %s\n' "$URL_DEFAULT"
+  exit 0
+fi
+exec xdg-open "$URL_DEFAULT"

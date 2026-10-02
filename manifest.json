@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "pupa.monarch",
+  "name": "Pupa",
+  "version": "0.1.0",
+  "author": "nathankramm",
+  "license": "MIT",
+  "description": "Pupa: Monarch Money on your Omarchy bar. A starting stage: fork it and grow it into your own.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Pupa",
+    "description": "This month's spending pace against your usual month, as a butterfly. Hover for the card, click for Monarch. Read-only; unofficial.",
+    "category": "Info",
+    "aliases": [
+      "pupa",
+      "monarch",
+      "spending",
+      "budget"
+    ],
+    "allowMultiple": false,
+    "defaultSection": "center",
+    "defaults": {
+      "faceExec": "~/.local/bin/monarch-now",
+      "faceInterval": 300,
+      "faceHover": "card",
+      "faceTint": true
+    },
+    "schema": [
+      {
+        "key": "faceExec",
+        "type": "string",
+        "label": "Engine command",
+        "description": "The command run on every tick. Its last stdout line is the whole display: the glyph, the face state and every string on the card.",
+        "defaultValue": "~/.local/bin/monarch-now"
+      },
+      {
+        "key": "faceInterval",
+        "type": "number",
+        "label": "Tick (seconds)",
+        "description": "How often the engine is run. It reads its cache; it asks Monarch at most once an hour whatever this says.",
+        "defaultValue": 300
+      },
+      {
+        "key": "faceHover",
+        "type": "select",
+        "label": "Hover",
+        "description": "What a hover over the butterfly shows: the card, or the same strings as a plain text tooltip.",
+        "options": [
+          {
+            "value": "card",
+            "label": "Hover card"
+          },
+          {
+            "value": "text",
+            "label": "Text tooltip"
+          }
+        ],
+        "defaultValue": "card"
+      },
+      {
+        "key": "faceTint",
+        "type": "boolean",
+        "label": "Tint the butterfly by pace",
+        "description": "Green at or under a usual month, amber ahead of it. Off paints it in the bar's own color; stale and broken look the same either way.",
+        "defaultValue": true
+      }
+    ]
+  }
+}
