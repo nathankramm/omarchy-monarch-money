@@ -202,7 +202,7 @@ def browser_login(out=sys.stdout):
 def poke_bar():
     """Ask the bar widget to run the engine now instead of at its next tick. Best effort."""
     try:
-        subprocess.run(["omarchy-shell", "pupa.monarch", "refresh"], capture_output=True, timeout=5)
+        subprocess.run(["omarchy-shell", "io.github.nathankramm.pupa", "refresh"], capture_output=True, timeout=5)
     except (OSError, subprocess.TimeoutExpired):
         pass
 

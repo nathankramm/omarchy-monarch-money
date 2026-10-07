@@ -16,8 +16,8 @@ Every merchant, bill, account and amount comes from the test suite's synthetic f
 the output never changes. Nothing is read from Monarch, the keyring or the cache.
 
 Show a scene on the bar, for this shell session only:
-    omarchy-shell pupa.monarch fixture "python3 ~/.config/omarchy/plugins/pupa.monarch/tools/demo.py over"
-    omarchy-shell pupa.monarch fixture off        # back to your own data
+    omarchy-shell io.github.nathankramm.pupa fixture "python3 ~/.config/omarchy/plugins/io.github.nathankramm.pupa/tools/demo.py over"
+    omarchy-shell io.github.nathankramm.pupa fixture off        # back to your own data
 
 It needs nothing but Python 3.11+: the model is pure standard library.
 """

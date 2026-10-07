@@ -2,6 +2,11 @@
 
 All notable changes to Pupa are recorded here. Versions follow [Semantic Versioning](https://semver.org/).
 
+## v0.2.0 (2026-10-06)
+
+### Breaking
+- Plugin ID is now io.github.nathankramm.pupa. If you installed 0.1.0, remove pupa.monarch and add it again.
+
 ## v0.1.0 (2026-10-01)
 
 The first public release: a starting stage.

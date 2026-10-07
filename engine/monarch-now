@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# monarch-now: launcher for the engine behind Pupa, the Monarch Money bar plugin (pupa.monarch).
+# monarch-now: launcher for the engine behind Pupa, the Monarch Money bar plugin (io.github.nathankramm.pupa).
 #
 # The engine is a Python package in its own venv, installed by ../install.sh:
 #     ~/.local/share/monarch-now/monarchnow/    the package (a copy of engine/monarchnow)

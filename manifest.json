@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "pupa.monarch",
+  "id": "io.github.nathankramm.pupa",
   "name": "Pupa",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "nathankramm",
   "license": "MIT",
   "description": "Pupa: Monarch Money on your Omarchy bar. A starting stage: fork it and grow it into your own.",

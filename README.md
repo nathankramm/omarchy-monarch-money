@@ -68,13 +68,13 @@ sudo pacman -S --needed python libsecret chromium
 `uv` is used when it is on your PATH (`mise use -g uv`); otherwise the installer falls back to
 `python -m venv` and `pip`.
 
-**1. Add the plugin.** It lands in `~/.config/omarchy/plugins/pupa.monarch/`, disabled.
+**1. Add the plugin.** It lands in `~/.config/omarchy/plugins/io.github.nathankramm.pupa/`, disabled.
 
 ```bash
 omarchy plugin add https://github.com/nathankramm/omarchy-monarch-money.git
 ```
 
-Or by hand: `git clone https://github.com/nathankramm/omarchy-monarch-money.git ~/.config/omarchy/plugins/pupa.monarch`
+Or by hand: `git clone https://github.com/nathankramm/omarchy-monarch-money.git ~/.config/omarchy/plugins/io.github.nathankramm.pupa`
 followed by `omarchy-shell shell rescanPlugins`.
 
 **2. Install the engine.** This builds a private Python environment in
@@ -83,7 +83,7 @@ checked by hash), copies the engine beside it, and puts the `monarch-now` comman
 `~/.local/bin`. No root, nothing outside your home directory.
 
 ```bash
-~/.config/omarchy/plugins/pupa.monarch/install.sh
+~/.config/omarchy/plugins/io.github.nathankramm.pupa/install.sh
 ```
 
 **3. Sign in.** A browser window opens on Monarch's own sign-in page, in a throwaway profile.
@@ -97,7 +97,7 @@ monarch-now login
 **4. Put the butterfly on the bar.**
 
 ```bash
-omarchy plugin enable pupa.monarch
+omarchy plugin enable io.github.nathankramm.pupa
 ```
 
 It starts in the center section; `omarchy bar move` puts it elsewhere. The first fetch takes a
@@ -108,14 +108,14 @@ the current shell session (other scenes: `over`, `grace`, `stale`, `reconnect`, 
 `signed-out`):
 
 ```bash
-omarchy-shell pupa.monarch fixture "python3 ~/.config/omarchy/plugins/pupa.monarch/tools/demo.py under"
-omarchy-shell pupa.monarch fixture off     # back to your own data
+omarchy-shell io.github.nathankramm.pupa fixture "python3 ~/.config/omarchy/plugins/io.github.nathankramm.pupa/tools/demo.py under"
+omarchy-shell io.github.nathankramm.pupa fixture off     # back to your own data
 ```
 
 If the butterfly does not change within a couple of seconds, the engine was in the middle of a
 run when the command arrived: send it again.
 
-**Updating:** `omarchy plugin update pupa.monarch`, then run `install.sh` again.
+**Updating:** `omarchy plugin update io.github.nathankramm.pupa`, then run `install.sh` again.
 
 ### Optional: the Monarch web app
 
@@ -123,7 +123,7 @@ Out of the box, a click opens `https://app.monarch.com` in your default browser.
 rather have Monarch as its own window, the way Omarchy does web apps:
 
 ```bash
-~/.config/omarchy/plugins/pupa.monarch/install-webapp.sh
+~/.config/omarchy/plugins/io.github.nathankramm.pupa/install-webapp.sh
 ```
 
 This calls Omarchy's own `omarchy-webapp-install` to create a "Monarch" web app
@@ -139,7 +139,7 @@ Everything works without a config file. To change something, copy the example an
 
 ```bash
 mkdir -p ~/.config/monarch-now
-cp ~/.config/omarchy/plugins/pupa.monarch/config.example.toml ~/.config/monarch-now/config.toml
+cp ~/.config/omarchy/plugins/io.github.nathankramm.pupa/config.example.toml ~/.config/monarch-now/config.toml
 ```
 
 | Key | Default | What it does |
@@ -187,8 +187,8 @@ monarch-now check FROM TO  spending for a date range by Pupa's rule, with what w
                            set it beside a Monarch report with the same filters (YYYY-MM-DD)
 monarch-now --refresh      fetch now (at most once a minute)
 
-omarchy-shell pupa.monarch status     the widget's state as JSON (no amounts)
-omarchy-shell pupa.monarch refresh    same as a middle click
+omarchy-shell io.github.nathankramm.pupa status     the widget's state as JSON (no amounts)
+omarchy-shell io.github.nathankramm.pupa refresh    same as a middle click
 ```
 
 ## Troubleshooting
@@ -290,7 +290,7 @@ to conform to. The point is to see what hatches.
 
 ```bash
 monarch-now logout
-omarchy plugin remove pupa.monarch
+omarchy plugin remove io.github.nathankramm.pupa
 rm -rf ~/.local/share/monarch-now ~/.cache/monarch-now ~/.local/state/monarch-now \
        ~/.config/monarch-now ~/.local/bin/monarch-now
 ```

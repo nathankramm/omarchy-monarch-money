@@ -11,7 +11,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 OUT="${1:-$ROOT/docs}"
 mkdir -p "$OUT"
-ipc() { omarchy-shell pupa.monarch "$@"; }
+ipc() { omarchy-shell io.github.nathankramm.pupa "$@"; }
 st() { ipc status | jq -r "$1"; }
 trap 'ipc hovercard close || true; ipc fixture off || true' EXIT
 

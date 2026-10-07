@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """The hover gesture test for the Pupa bar widget, run with a virtual pointer (vpointer.py).
 
-    gesture_test.py [--click] [--target pupa.monarch] [--x X --y Y]
+    gesture_test.py [--click] [--target io.github.nathankramm.pupa] [--x X --y Y]
                     [--other-x X] [--other-target PLUGIN_ID]
 
 It MOVES THE REAL CURSOR for about twenty seconds; keep hands off the pointer. The cursor is put
 back where it was. `--click` also runs the two click gestures, which open (or focus) Monarch.
 
-The widget says where its butterfly sits (`omarchy-shell pupa.monarch status`: face_x, face_y),
+The widget says where its butterfly sits (`omarchy-shell io.github.nathankramm.pupa status`: face_x, face_y),
 so no coordinates are needed on a top bar; --x/--y override them. It works on any data: your
 own, or the invented household (see tools/demo.py):
-    omarchy-shell pupa.monarch fixture "python3 <this checkout>/tools/demo.py under"
+    omarchy-shell io.github.nathankramm.pupa fixture "python3 <this checkout>/tools/demo.py under"
 
 Gestures, each judged from the widget's own IPC status sampled about eight times a second:
   1 rest on the butterfly        closed -> opening -> open, open within ~0.6 s
@@ -40,7 +40,7 @@ def arg(name, default):
     return type(default)(sys.argv[sys.argv.index(name) + 1]) if name in sys.argv else default
 
 
-TARGET = arg("--target", "pupa.monarch")
+TARGET = arg("--target", "io.github.nathankramm.pupa")
 OTHER_TARGET = arg("--other-target", "")
 
 

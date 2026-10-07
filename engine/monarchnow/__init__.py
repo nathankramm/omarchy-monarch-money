@@ -1,4 +1,4 @@
-"""monarch-now: the engine behind Pupa, the Monarch Money bar plugin for Omarchy (pupa.monarch).
+"""monarch-now: the engine behind Pupa, the Monarch Money bar plugin for Omarchy (io.github.nathankramm.pupa).
 
     adapter.py   the ONE module that talks to Monarch (swap it to change the data source)
     model.py     pure: a snapshot + a clock -> every display string the card paints
@@ -13,4 +13,4 @@ Iron rule: the engine formats, the painter paints. Python does all math and all 
 QML multiplies a ratio by a pixel width and nothing else.
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

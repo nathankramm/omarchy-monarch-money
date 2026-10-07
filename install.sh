@@ -5,7 +5,7 @@
 #   package   ~/.local/share/monarch-now/monarchnow   a copy of engine/monarchnow
 #   launcher  ~/.local/bin/monarch-now
 # It does not touch shell.json, the keyring, the cache or your config. Run it again after
-# `omarchy plugin update pupa.monarch`.
+# `omarchy plugin update io.github.nathankramm.pupa`.
 set -euo pipefail
 export LC_ALL=C       # one file order everywhere, so the fingerprint printed below is comparable
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/engine"

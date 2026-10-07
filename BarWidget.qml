@@ -28,7 +28,7 @@ import qs.Ui
 // and a run that outlives a whole tick is withdrawn rather than waited on.
 BarWidget {
   id: root
-  moduleName: "pupa.monarch"
+  moduleName: "io.github.nathankramm.pupa"
 
   // nf-md-link_off. Built from the code point: a literal private-use glyph is stripped by some
   // editors and tools, and an empty glyph is an invisible widget.
@@ -244,13 +244,13 @@ BarWidget {
     }
   }
 
-  //   omarchy-shell pupa.monarch status | jq
-  //   omarchy-shell pupa.monarch refresh
-  //   omarchy-shell pupa.monarch open                      # what a click does
-  //   omarchy-shell pupa.monarch hovercard open|close      # screenshot aid
-  //   omarchy-shell pupa.monarch fixture '<command>'       # session only; `off` restores
+  //   omarchy-shell io.github.nathankramm.pupa status | jq
+  //   omarchy-shell io.github.nathankramm.pupa refresh
+  //   omarchy-shell io.github.nathankramm.pupa open                      # what a click does
+  //   omarchy-shell io.github.nathankramm.pupa hovercard open|close      # screenshot aid
+  //   omarchy-shell io.github.nathankramm.pupa fixture '<command>'       # session only; `off` restores
   IpcHandler {
-    target: "pupa.monarch"
+    target: "io.github.nathankramm.pupa"
     function refresh(): void { root.broadcast("refresh") }
     function open(): void { root.openMonarch() }
     function status(): string { return root.statusJson() }
