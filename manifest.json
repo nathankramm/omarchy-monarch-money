@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "author": "nathankramm",
   "license": "MIT",
-  "description": "Pupa: Monarch Money on your Omarchy bar. A starting stage: fork it and grow it into your own.",
+  "description": "Monarch Money in your bar: this month's spending pace against your usual month, as a butterfly. Read-only, unofficial.",
   "kinds": [
     "bar-widget"
   ],
