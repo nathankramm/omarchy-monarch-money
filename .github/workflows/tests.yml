@@ -1,0 +1,29 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Least privilege: the job only reads the repo.
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: run-tests.sh
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20 # 2 min 21 s on Grove (2026-10-28), mutants included
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14" # what engine/requirements.txt was compiled against
+      # The venv stays outside the checkout, as the README's Tests section says.
+      - name: Install the pinned engine requirements
+        run: |
+          python -m venv "$RUNNER_TEMP/venv"
+          "$RUNNER_TEMP/venv/bin/pip" install --disable-pip-version-check --require-hashes -r engine/requirements.txt
+      - name: Run the suite
+        run: ./run-tests.sh "$RUNNER_TEMP/venv/bin/python"
