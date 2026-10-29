@@ -1,5 +1,7 @@
 # Pupa
 
+[![Tests](https://github.com/nathankramm/omarchy-monarch-money/actions/workflows/tests.yml/badge.svg)](https://github.com/nathankramm/omarchy-monarch-money/actions/workflows/tests.yml)
+
 Pupa is a starting stage. Fork it, and what it becomes is yours.
 
 **Pupa: Monarch Money on your Omarchy bar.** One butterfly, tinted by how this month's spending
@@ -294,6 +296,16 @@ omarchy plugin remove io.github.nathankramm.pupa
 rm -rf ~/.local/share/monarch-now ~/.cache/monarch-now ~/.local/state/monarch-now \
        ~/.config/monarch-now ~/.local/bin/monarch-now
 ```
+
+## How this was built
+
+I chose the problem and wrote the spec. Claude Code wrote most of the code.
+
+It is checked by the suite in this repo (see *Tests*), which GitHub Actions runs on every push:
+an independent oracle that recomputes the whole card with different code, the real bar tick run
+end to end on invented data, and one-defect mutants of the engine that must each fail a check.
+The gesture test drives the real widget on a running Omarchy shell, so it runs on my machine,
+not in CI.
 
 ## Credits and license
 
